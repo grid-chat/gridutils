@@ -9,8 +9,7 @@ import (
 
 var dcps []*internetgateway2.WANIPConnection1
 
-//Initialize initiate Router Connections
-func Initialize() {
+func init() {
 	dcps, _, _ = internetgateway2.NewWANIPConnection1Clients()
 }
 
