@@ -1,4 +1,4 @@
-package gridutil
+package gridutils
 
 import (
 	"net"
