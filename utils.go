@@ -20,10 +20,16 @@ func getInternalIP() string {
 
 func Forward(port uint16, proto string, desc string) {
 	dcps, _, _ := internetgateway1.NewWANIPConnection1Clients()
-	dcps[0].AddPortMapping("", port, proto, port, getInternalIP(), true, "GRID:"+desc, 0)
+	err := dcps[0].AddPortMapping("", port, proto, port, getInternalIP(), true, "GRID:"+desc, 0)
+	if err != nil {
+		println(err)
+	}
 }
 
 func Unforward(port uint16, proto string) {
 	dcps, _, _ := internetgateway1.NewWANIPConnection1Clients()
-	dcps[0].DeletePortMapping("", port, proto)
+	err := dcps[0].DeletePortMapping("", port, proto)
+	if err != nil {
+		println(err)
+	}
 }
