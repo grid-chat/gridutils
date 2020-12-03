@@ -7,6 +7,12 @@ import (
 	"github.com/huin/goupnp/dcps/internetgateway1"
 )
 
+var dcps []*internetgateway1.WANIPConnection1
+
+func init() {
+	dcps, _, _ = internetgateway1.NewWANIPConnection1Clients()
+}
+
 //GetInternalIP gets the first ipv4 non loopback ip
 func GetInternalIP() string {
 	host, _ := os.Hostname()
@@ -21,7 +27,6 @@ func GetInternalIP() string {
 
 //GetExternalIP gets the external IP
 func GetExternalIP() string {
-	dcps, _, _ := internetgateway1.NewWANIPConnection1Clients()
 	ip, err := dcps[0].GetExternalIPAddress()
 	if err != nil {
 		println(err)
@@ -32,7 +37,6 @@ func GetExternalIP() string {
 
 //Forward forwards a proto on port with desc
 func Forward(port uint16, proto string, desc string) {
-	dcps, _, _ := internetgateway1.NewWANIPConnection1Clients()
 	err := dcps[0].AddPortMapping("", port, proto, port, GetInternalIP(), true, "GRID:"+desc, 0)
 	if err != nil {
 		println(err)
@@ -41,7 +45,6 @@ func Forward(port uint16, proto string, desc string) {
 
 //Unforward removes a proto on port
 func Unforward(port uint16, proto string) {
-	dcps, _, _ := internetgateway1.NewWANIPConnection1Clients()
 	err := dcps[0].DeletePortMapping("", port, proto)
 	if err != nil {
 		println(err)
