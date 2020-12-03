@@ -1,4 +1,4 @@
-module github.com/grid-chat/gridutil
+module github.com/grid-chat/gridutils
 
 go 1.15
 
