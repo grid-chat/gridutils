@@ -4,13 +4,13 @@ import (
 	"net"
 	"os"
 
-	"github.com/huin/goupnp/dcps/internetgateway1"
+	"github.com/huin/goupnp/dcps/internetgateway2"
 )
 
-var dcps []*internetgateway1.WANIPConnection1
+var dcps []*internetgateway2.WANIPConnection1
 
 func init() {
-	dcps, _, _ = internetgateway1.NewWANIPConnection1Clients()
+	dcps, _, _ = internetgateway2.NewWANIPConnection1Clients()
 }
 
 //GetInternalIP gets the first ipv4 non loopback ip
