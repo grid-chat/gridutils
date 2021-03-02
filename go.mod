@@ -1,6 +1,6 @@
 module github.com/grid-chat/gridutils
 
-go 1.15
+go 1.16
 
 require (
 	github.com/huin/goupnp v1.0.0
